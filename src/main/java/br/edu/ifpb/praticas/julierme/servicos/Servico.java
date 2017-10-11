@@ -15,8 +15,9 @@ import java.util.List;
  */
 public interface Servico<O> extends Serializable{
     
+    /* Interface que implementa os serviços de adicionar, listar e procurar */
     void adicionar(O o);
     List<O> listar();
-    O procurar(String chave);
+    O procurar(String nome);
     
 }

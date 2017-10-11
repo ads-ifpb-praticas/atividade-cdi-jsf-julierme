@@ -20,12 +20,14 @@ public class CategoriaServico implements Servico<Categoria>{
     
     private CategoriaDAO dao;
 
+    /* Adiciona categoria no banco */
     @Override
     public void adicionar(Categoria categoria) {
         try {dao.persistir(categoria);}
         catch (SQLException ex) {Logger.getLogger(CategoriaServico.class.getName()).log(Level.SEVERE, null, ex);}
     }
 
+    /* Lista todas as categorias presentes no banco */
     @Override
     public List<Categoria> listar() {
         try {return dao.listar();}
@@ -33,9 +35,10 @@ public class CategoriaServico implements Servico<Categoria>{
         return null;
     }
 
+    /* Procura as categorias no banco passando um nome como parâmetro */
     @Override
-    public Categoria procurar(String chave) {
-        try {return dao.buscar(chave);}
+    public Categoria procurar(String nome) {
+        try {return dao.buscar(nome);}
         catch (SQLException ex) {Logger.getLogger(CategoriaServico.class.getName()).log(Level.SEVERE, null, ex);}
         return null;
     }

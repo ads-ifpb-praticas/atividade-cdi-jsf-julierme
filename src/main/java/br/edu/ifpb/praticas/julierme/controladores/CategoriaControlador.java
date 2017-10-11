@@ -10,14 +10,19 @@ import br.edu.ifpb.praticas.julierme.servicos.Servico;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  *
  * @author Julierme Heinstein
  */
-
+@Named
+@RequestScoped
 public class CategoriaControlador implements Serializable{
     
+    @Inject
     private Servico<Categoria> servico;
     private String categoria;
     
@@ -37,7 +42,7 @@ public class CategoriaControlador implements Serializable{
         return null;
     }
     
-    public List<Categoria> list() {
+    public List<Categoria> lista() {
         return Collections.unmodifiableList(servico.listar());
     }
 

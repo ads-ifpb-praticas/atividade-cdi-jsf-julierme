@@ -6,11 +6,12 @@
 package br.edu.ifpb.praticas.julierme.servicos;
 
 import br.edu.ifpb.praticas.julierme.Produto;
-import br.edu.ifpb.praticas.julierme.dao.ProdutoDAO;
+import br.edu.ifpb.praticas.julierme.dao.Dados;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.inject.Inject;
 
 /**
  *
@@ -18,24 +19,30 @@ import java.util.logging.Logger;
  */
 public class ProdutoServico implements Servico<Produto>{
     
-    private ProdutoDAO dao;
+    @Inject
+    private Dados<Produto> produtodados;
+    @Inject
+    private CategoriaServico categoriaserv;
 
+    /* Adiciona produto no banco */
     @Override
     public void adicionar(Produto produto) {
-        try {dao.persistir(produto);}
+        try {produtodados.persistir(produto);}
         catch (SQLException ex) {Logger.getLogger(ProdutoServico.class.getName()).log(Level.SEVERE, null, ex);}
     }
 
+    /* Lista todas os produtos presentes no banco */
     @Override
     public List<Produto> listar() {
-        try {return dao.listar();}
+        try {return produtodados.listar();}
         catch (SQLException ex) {Logger.getLogger(ProdutoServico.class.getName()).log(Level.SEVERE, null, ex);}
         return null;
     }
 
+    /* Procura os produtos no banco passando um nome como parâmetro */
     @Override
-    public Produto procurar(String chave) {
-        try {return dao.buscar(chave);}
+    public Produto procurar(String nome) {
+        try {return produtodados.buscar(nome);}
         catch (SQLException ex) {Logger.getLogger(ProdutoServico.class.getName()).log(Level.SEVERE, null, ex);}
         return null;
     }

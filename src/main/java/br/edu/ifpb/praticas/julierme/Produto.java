@@ -6,20 +6,33 @@
 package br.edu.ifpb.praticas.julierme;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 
 /**
  *
  * @author Julierme Heinstein
  */
+@Entity
+@SequenceGenerator(name = "produto")
 public class Produto implements Serializable{
     
     /* Atributos */
-    private String nome;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int nidentificacao;
+    @Column(unique = true, nullable = false)
+    private String nome;
     private String foto;
     private String descricao;
     private float precounitario;
     private String marca;
+    @OneToOne
     private Categoria categoria;
     
     
@@ -68,5 +81,13 @@ public class Produto implements Serializable{
     
     public Categoria getCategoria(){return this.categoria;}
     public void setCategoria(Categoria categoria){this.categoria = categoria;}
+
+    public int getNidentificacao() {
+        return nidentificacao;
+    }
+
+    public void setNidentificacao(int nidentificacao) {
+        this.nidentificacao = nidentificacao;
+    }
     
 }

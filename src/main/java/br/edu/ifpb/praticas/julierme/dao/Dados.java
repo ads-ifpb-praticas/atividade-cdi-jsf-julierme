@@ -15,6 +15,7 @@ import java.util.List;
  */
 public interface Dados<O> {
     
+    /* Interface que implementa os métodos de persistir, buscar e listar acessando o banco */
     void persistir(O o) throws SQLException;
     O buscar(String nome) throws SQLException;
     List<O> listar() throws SQLException;

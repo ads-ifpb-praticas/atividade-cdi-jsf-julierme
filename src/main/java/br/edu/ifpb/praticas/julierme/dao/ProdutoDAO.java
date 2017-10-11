@@ -21,10 +21,12 @@ public class ProdutoDAO implements Dados<Produto>{
     
     private Statement stat;
     
+    /* Construtor que estabelece conexão e retorna o Statement */
     public ProdutoDAO() throws SQLException, ClassNotFoundException{
         this.stat = Acesso.getConnection();
     }
 
+    /* Método que implementa a função de persistir os dados no banco */
     @Override
     public void persistir(Produto produto) throws SQLException{
         try{
@@ -44,6 +46,7 @@ public class ProdutoDAO implements Dados<Produto>{
         } catch (SQLException e){throw new PersistenceException(e);}
     }
 
+    /* Método que implementa a função de buscar pela marca os produtos no banco */
     @Override
     public Produto buscar(String nomeMarca) throws SQLException{
         String sql = "SELECT * FROM Produto p WHERE marca =" + nomeMarca;
@@ -66,6 +69,7 @@ public class ProdutoDAO implements Dados<Produto>{
         } catch (SQLException e){throw new PersistenceException(e);}
     }
 
+    /* Método que implementa a função de listar todos os produtos no banco */
     @Override
     public List<Produto> listar() throws SQLException{
         String sql = "SELECT p FROM Produto p";

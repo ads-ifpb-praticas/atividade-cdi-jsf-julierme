@@ -6,15 +6,24 @@
 package br.edu.ifpb.praticas.julierme;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
  * @author Julierme Heinstein
  */
+@Entity
 public class Categoria implements Serializable{
     
     /* Atributos */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int ID;
+    @Column(unique = true, nullable = false)
     private String categoria;
     
     /* Construtor padrão */
